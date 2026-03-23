@@ -28,17 +28,33 @@ public class App
                 continue;
             }
 
-            int result = calculator.calculate(num1, num2, operator);
+            // 여기서 char -> enum 변환
+            OperatorType operatorType = OperatorType.fromChar(operator);
+
+            // 이제 Calculator에 enum을 넘김
+            int result = calculator.calculate(num1, num2, operatorType);
+
             System.out.println("결과: " + result);
 
-            scanner.nextLine();
+            scanner.nextLine(); // 남아 있는 엔터 제거
+
+            System.out.print("가장 먼저 입력된 결과를 삭제하시겠습니까? (remove 입력시 삭제): ");
+            String removeAnswer = scanner.nextLine();
+
+            if (removeAnswer.equals("remove")){
+                calculator.removeResult();
+                System.out.println("삭제 후 결과 목록: " + calculator.getResults());
+            }
+
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료): ");
             String answer = scanner.nextLine();
+
             if(answer.equals("exit"))
             {
                 break;
             }
         }
+
         scanner.close();
     }
 }

@@ -7,22 +7,21 @@ public class Calculator {
 
     private List<Integer> results = new ArrayList<>();
 
-    public int calculate(int num1, int num2, char operator) {
+    public int calculate(int num1, int num2, OperatorType operatorType) {
 
         int result = 0;
 
-        if (operator == '+'){
+        if (operatorType == OperatorType.ADD){
             result = num1 + num2;
-        } else if (operator == '-') {
+        } else if (operatorType == OperatorType.SUBTRACT) {
             result = num1 - num2;
-        } else if (operator == '*') {
+        } else if (operatorType == OperatorType.MULTIPLY) {
             result = num1 * num2;
-        } else if (operator == '/') {
+        } else if (operatorType == OperatorType.DIVIDE) {
             result = num1 / num2;
-            }
+        }
 
         results.add(result);
-
         return result;
     }
 
