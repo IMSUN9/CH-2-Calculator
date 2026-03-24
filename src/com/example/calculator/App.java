@@ -8,21 +8,24 @@ public class App
 
         Scanner scanner = new Scanner(System.in);
 
-        Calculator calculator = new Calculator();
+        ArithmeticCalculator<Number> calculator = new ArithmeticCalculator<>();
 
         while (true) {
 
             System.out.print("첫 번째 숫자를 입력하세요: ");
-            int num1 = scanner.nextInt();
+            String input1 = scanner.next();
 
             System.out.print("두 번째 숫자를 입력하세요: ");
-            int num2 = scanner.nextInt();
+            String input2 = scanner.next();
 
             System.out.print("사칙연산 기호를 입력하세요: ");
             char operator = scanner.next().charAt(0);
 
+            Number num1 = parseNumber(input1);
+            Number num2 = parseNumber(input2);
+
             // 나눗셈에서 분모가 0인지 먼저 검사
-            if (operator == '/' && num2 == 0)
+            if (operator == '/' && num2.doubleValue() == 0)
             {
                 System.out.println("나눗셈 연산에서 분모에 0이 입력될 수 없습니다.");
                 continue;
@@ -32,7 +35,7 @@ public class App
             OperatorType operatorType = OperatorType.fromChar(operator);
 
             // 이제 Calculator에 enum을 넘김
-            int result = calculator.calculate(num1, num2, operatorType);
+            double result = calculator.calculate(num1, num2, operatorType);
 
             System.out.println("결과: " + result);
 
@@ -57,4 +60,14 @@ public class App
 
         scanner.close();
     }
+
+    // 입력값이 정수면 Integer, 실수면 Double로 변환
+    private static Number parseNumber(String number){
+        if (number.contains(".")) {
+            return Double.parseDouble(number);
+        } else {
+            return Integer.parseInt(number);
+        }
+    }
+
 }
