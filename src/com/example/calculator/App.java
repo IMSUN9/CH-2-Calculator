@@ -8,7 +8,7 @@ public class App
 
         Scanner scanner = new Scanner(System.in);
 
-        ArithmeticCalculator<Number> calculator = new ArithmeticCalculator<>();
+        ArithmeticCalculator<Number> arithmeticCalculator = new ArithmeticCalculator<>();
 
         while (true) {
 
@@ -35,7 +35,7 @@ public class App
             OperatorType operatorType = OperatorType.fromChar(operator);
 
             // 이제 Calculator에 enum을 넘김
-            double result = calculator.calculate(num1, num2, operatorType);
+            double result = arithmeticCalculator.calculate(num1, num2, operatorType);
 
             System.out.println("결과: " + result);
 
@@ -45,8 +45,8 @@ public class App
             String removeAnswer = scanner.nextLine();
 
             if (removeAnswer.equals("remove")){
-                calculator.removeResult();
-                System.out.println("삭제 후 결과 목록: " + calculator.getResults());
+                arithmeticCalculator.removeResult();
+                System.out.println("삭제 후 결과 목록: " + arithmeticCalculator.getResults());
             }
 
             System.out.print("기준값보다 큰 결과들을 조회하시겠습니까? (yes 입력 시 조회): ");
@@ -56,7 +56,7 @@ public class App
                 System.out.print("기준값을 입력하세요: ");
                 double value = Double.parseDouble(scanner.nextLine());
 
-                System.out.println("조회 결과: " + calculator.getResultsGreaterThan(value));
+                System.out.println("조회 결과: " + arithmeticCalculator.getResultsGreaterThan(value));
             }
 
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료): ");
