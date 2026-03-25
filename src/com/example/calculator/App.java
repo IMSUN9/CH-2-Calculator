@@ -49,6 +49,16 @@ public class App
                 System.out.println("삭제 후 결과 목록: " + calculator.getResults());
             }
 
+            System.out.print("기준값보다 큰 결과들을 조회하시겠습니까? (yes 입력 시 조회): ");
+            String searchAnswer = scanner.nextLine();
+
+            if (searchAnswer.equals("yes")){
+                System.out.print("기준값을 입력하세요: ");
+                double value = Double.parseDouble(scanner.nextLine());
+
+                System.out.println("조회 결과: " + calculator.getResultsGreaterThan(value));
+            }
+
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료): ");
             String answer = scanner.nextLine();
 

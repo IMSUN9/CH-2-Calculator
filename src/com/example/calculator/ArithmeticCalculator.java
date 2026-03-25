@@ -48,4 +48,11 @@ public class ArithmeticCalculator<T extends Number> {
         return result;
     }
 
+    // 기존값보다 큰 결과들만 조회
+    public List<Double> getResultsGreaterThan(double value){
+        return results.stream()
+                .filter(result -> result > value)
+                .toList();
+    }
+
 }
